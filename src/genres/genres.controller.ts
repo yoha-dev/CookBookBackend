@@ -1,5 +1,5 @@
 import { GenreService } from './genres.service';
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post } from '@nestjs/common';
 import { Genre } from './interfaces/genre.interface';
 import { CreateGenreDto } from './dto/create-genre.dto';
 
@@ -16,4 +16,10 @@ export class GenreController {
   async create(@Body() createGenreDto: CreateGenreDto) {
     this.genreService.create(createGenreDto);
   }
+
+  @Delete()
+  async delete(@Body() createGenreDto: CreateGenreDto){
+    this.genreService.delete(createGenreDto);
+  }
+
 }
