@@ -1,21 +1,25 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { Genre } from './interfaces/genre.interface';
 import { CreateGenreDto } from './dto/create-genre.dto';
-import { createECDH } from 'crypto';
+import { Genre } from './genre.schema';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class GenreService {
-  private genres: Genre[] = [];
+  constructor(@InjectModel(Genre.name) private genreModel: Model<Genre>) {}
 
-  create(genre: Genre) {
-    this.genres.push(genre);
+  async create(createGenreDto: CreateGenreDto): Promise<Genre> {
+    const createdGenre = new this.genreModel(createGenreDto);
+    return createdGenre.save();
   }
 
-  findAll(): Genre[] {
-    return this.genres;
+  findAll(): Promise<Genre[]> {
+    return this.genreModel.find().exec();
   }
 
   delete(createGenreDto: CreateGenreDto) {
-    this.genres = this.genres.filter( gen => gen.name !== createGenreDto.name)
+    return this.genreModel
+      .find({ name: createGenreDto.name })
+      .findOneAndRemove();
   }
 }
