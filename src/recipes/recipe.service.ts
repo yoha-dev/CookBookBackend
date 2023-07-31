@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Recipe } from './recipes.schema';
-import { CreateRecipeDto } from './dto/create-recipe.dto';
+import { CreateRecipeDto, DeleteRecipeDto } from './dto/create-recipe.dto';
 
 @Injectable()
 export class RecipeService {
@@ -17,9 +17,9 @@ export class RecipeService {
     return this.RecipeModel.find().exec();
   }
 
-  delete(createRecipeDto: CreateRecipeDto) {
+  delete(deleteRecipeDto: DeleteRecipeDto) {
+    console.log(deleteRecipeDto);
     return this.RecipeModel
-      .find({ name: createRecipeDto.name })
-      .findOneAndRemove();
+      .findByIdAndRemove(deleteRecipeDto._id).then();
   }
 }

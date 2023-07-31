@@ -7,11 +7,14 @@ export type IngredientEntryDocument = HydratedDocument<IngredientEntry>;
 
 @Schema()
 export class IngredientEntry {
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Ingredient' })
+  @Prop()
   ingredient: Ingredient;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Unit' })
+  @Prop()
   unit: Unit;
+
+  @Prop()
+  amount: number; 
 }
 
 export const IngredientEntrySchema =

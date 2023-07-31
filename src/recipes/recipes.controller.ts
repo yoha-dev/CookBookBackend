@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Post } from "@nestjs/common";
 import { RecipeService } from "./recipe.service";
 import { Recipe } from "./recipes.schema";
-import { CreateRecipeDto } from "./dto/create-recipe.dto";
+import { CreateRecipeDto, DeleteRecipeDto } from "./dto/create-recipe.dto";
 
 @Controller('recipes')
 export class RecipeController {
@@ -10,7 +10,7 @@ export class RecipeController {
   @Get()
   async findAll(): Promise<Recipe[]> {
     return this.recipeService.findAll();
-  }
+  }  title: string;
 
   @Post()
   async create(@Body() createRecipeDto: CreateRecipeDto) {
@@ -18,7 +18,7 @@ export class RecipeController {
   }
 
   @Delete()
-  async delete(@Body() createRecipeDto: CreateRecipeDto) {
-    this.recipeService.delete(createRecipeDto);
+  async delete(@Body() deleteRecipeDto: DeleteRecipeDto) {
+    this.recipeService.delete(deleteRecipeDto);
   }
 }

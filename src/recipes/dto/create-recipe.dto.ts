@@ -5,9 +5,14 @@ export class CreateRecipeDto {
   name: string;
   description: string;
   ingredientEntries: CreateIngredientEntryDto[];
+  tags: string[];
 }
 
 export class CreateIngredientEntryDto {
   ingredient: Ingredient;
   unit: Unit;
+}
+
+export class DeleteRecipeDto {
+  _id: string;
 }
