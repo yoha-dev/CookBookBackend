@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { GenreController } from './genres.controller';
 import { GenreService } from './genres.service';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -10,5 +10,6 @@ import { Genre, GenreSchema } from './genre.schema';
   ],
   controllers: [GenreController],
   providers: [GenreService],
+  exports: [GenreService],
 })
 export class GenreModule {}

@@ -6,6 +6,7 @@ export class CreateRecipeDto {
   description: string;
   ingredientEntries: CreateIngredientEntryDto[];
   tags: string[];
+  genres: string[];
 }
 
 export class CreateIngredientEntryDto {

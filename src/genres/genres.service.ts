@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { CreateGenreDto } from './dto/create-genre.dto';
 import { Genre } from './genre.schema';
 import { InjectModel } from '@nestjs/mongoose';
@@ -17,9 +17,14 @@ export class GenreService {
     return this.genreModel.find().exec();
   }
 
-  delete(createGenreDto: CreateGenreDto) {
+  delete(createGenreDto: CreateGenreDto):Promise<CreateGenreDto> {
     return this.genreModel
       .find({ name: createGenreDto.name })
       .findOneAndRemove();
+  }
+
+  async exists(name: string): Promise<Boolean> {
+    let exists = await this.genreModel.exists({ name: name });
+    return exists === null ? false : true;
   }
 }

@@ -8,13 +8,16 @@ export type IngredientEntryDocument = HydratedDocument<IngredientEntry>;
 @Schema()
 export class IngredientEntry {
   @Prop()
+  position: number;
+
+  @Prop()
   ingredient: Ingredient;
 
   @Prop()
   unit: Unit;
 
   @Prop()
-  amount: number; 
+  amount: number;
 }
 
 export const IngredientEntrySchema =

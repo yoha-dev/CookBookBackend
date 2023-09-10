@@ -1,7 +1,7 @@
-import { Body, Controller, Delete, Get, Post } from "@nestjs/common";
-import { RecipeService } from "./recipe.service";
-import { Recipe } from "./recipes.schema";
-import { CreateRecipeDto, DeleteRecipeDto } from "./dto/create-recipe.dto";
+import { Body, Controller, Delete, Get, Post } from '@nestjs/common';
+import { RecipeService } from './recipe.service';
+import { Recipe } from './recipes.schema';
+import { CreateRecipeDto, DeleteRecipeDto } from './dto/create-recipe.dto';
 
 @Controller('recipes')
 export class RecipeController {
@@ -10,7 +10,8 @@ export class RecipeController {
   @Get()
   async findAll(): Promise<Recipe[]> {
     return this.recipeService.findAll();
-  }  title: string;
+  }
+  title: string;
 
   @Post()
   async create(@Body() createRecipeDto: CreateRecipeDto) {

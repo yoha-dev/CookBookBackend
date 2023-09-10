@@ -19,6 +19,6 @@ export class GenreController {
 
   @Delete()
   async delete(@Body() createGenreDto: CreateGenreDto) {
-    this.genreService.delete(createGenreDto);
+    return this.genreService.delete(createGenreDto);
   }
 }
